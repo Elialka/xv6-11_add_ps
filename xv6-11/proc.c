@@ -547,7 +547,7 @@ cps151()
   acquire(&ptable.lock);
   cprintf("name \t pid \t state \t \t ppid \n");
   for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
-    int ppid = p->pid == 1 ? 0 :p->parent->pid; // ppid of init (pid==) is defined as 0
+    int ppid = p->pid == 1 ? 0 : p->parent->pid; // ppid of init (pid==1) is defined as 0
     if (p->state == RUNNING)
       cprintf("%s \t %d  \t RUNNING \t %d\n ", p->name, p->pid, ppid);
     else if (p->pid)// process exists
