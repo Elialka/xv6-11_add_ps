@@ -532,3 +532,27 @@ procdump(void)
     cprintf("\n");
   }
 }
+
+// Print curent process status
+// Includes fields: name, pid, state, ppid
+int cps151()
+{
+  struct proc *p;
+
+  // Enable interrupts on this processor.
+  sti();
+ 
+  // Iterate over process table and extract relevant fields' information
+  acquire(&ptable.lock);
+  cprintf("name \t pid \t state \t \t ppid \n");
+  for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
+    if (p->state == SLEEPING)
+      cprintf("%s \t %d  \t SLEEPING \t %d\n ", p->name, p->pid, p->parent->pid);
+    else if (p->state == RUNNING)
+      cprintf("%s \t %d  \t RUNNING \t %d\n ", p->name, p->pid, p->parent->pid);
+  }
+  
+  release(&ptable.lock);
+
+  return 151;
+}
