@@ -1,3 +1,5 @@
+# This is a make configuration file for xv6
+# Modified by Eli Alkhazov 208516351
 OBJS = \
 	bio.o\
 	console.o\

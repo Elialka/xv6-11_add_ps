@@ -1,3 +1,6 @@
+// This file defines which system calls exist, and what are their corresponding system call ids
+// Magic number 151 is used as instructed and as shows in the fork example 
+// Modified by Eli Alkhazov 208516351
 #include "types.h"
 #include "defs.h"
 #include "param.h"

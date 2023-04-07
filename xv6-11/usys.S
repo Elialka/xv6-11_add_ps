@@ -1,3 +1,6 @@
+# This file contains macros for preparing the registers for the system call traps
+# Modified by Eli Alkhazov 208516351
+
 #include "syscall.h"
 #include "traps.h"
 
