@@ -1,3 +1,6 @@
+// This file defines which system calls exist, and what are their corresponding system call ids
+// Magic number 151 is used as instructed and as shows in the fork example 
+// Modified by Eli Alkhazov 208516351
 #include "types.h"
 #include "defs.h"
 #include "param.h"
@@ -103,6 +106,7 @@ extern int sys_unlink(void);
 extern int sys_wait(void);
 extern int sys_write(void);
 extern int sys_uptime(void);
+extern int sys_cps151(void);
 
 static int (*syscalls[])(void) = {
 // Adding "new" "SYSCALLfork(fork)" without changing syscall.h
@@ -127,6 +131,7 @@ static int (*syscalls[])(void) = {
 [SYS_link]    sys_link,
 [SYS_mkdir]   sys_mkdir,
 [SYS_close]   sys_close,
+[151]         sys_cps151,
 };
 
 void

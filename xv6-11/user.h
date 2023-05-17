@@ -1,3 +1,5 @@
+// This file defines the functions that are called from the user space for system calls
+// Modified by Eli Alkhazov 208516351
 struct stat;
 struct rtcdate;
 
@@ -23,6 +25,7 @@ int getpid(void);
 char* sbrk(int);
 int sleep(int);
 int uptime(void);
+int cps151(void);
 
 // ulib.c
 int stat(const char*, struct stat*);

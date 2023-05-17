@@ -1,3 +1,5 @@
+// This file contains the implementations of the system calls
+// Modified by Eli Alkhazov 208516351
 #include "types.h"
 #include "defs.h"
 #include "param.h"
@@ -531,4 +533,30 @@ procdump(void)
     }
     cprintf("\n");
   }
+}
+
+// Print curent process status
+// Includes fields: name, pid, state, ppid
+int
+cps151()
+{
+  struct proc *p;
+
+  // Enable interrupts on this processor.
+  sti();
+ 
+  // Iterate over process table and extract relevant fields' information
+  acquire(&ptable.lock);
+  cprintf("name \t pid \t state \t \t ppid \n");
+  for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
+    int ppid = p->pid == 1 ? 0 : p->parent->pid; // ppid of init (pid==1) is defined as 0
+    if (p->state == RUNNING)
+      cprintf("%s \t %d  \t RUNNING \t %d\n ", p->name, p->pid, ppid);
+    else if (p->pid)// process exists
+      cprintf("%s \t %d  \t SLEEPING \t %d\n ", p->name, p->pid, ppid);
+  }
+  
+  release(&ptable.lock);
+
+  return 151;
 }

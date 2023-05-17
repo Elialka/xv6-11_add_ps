@@ -1,3 +1,5 @@
+// This file contains system call definitions
+// Modified by Eli Alkhazov 208516351
 #include "types.h"
 #include "x86.h"
 #include "defs.h"
@@ -88,4 +90,10 @@ sys_uptime(void)
   xticks = ticks;
   release(&tickslock);
   return xticks;
+}
+
+int
+sys_cps151(void)
+{
+  return cps151();
 }
